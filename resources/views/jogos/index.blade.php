@@ -52,6 +52,9 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar{{ $jogo->id }}">
                         Editar
                     </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluir{{ $jogo->id }}">
+                        Excluir
+                    </button>
                 </th>
 
                 <!-- Modal -->
@@ -79,6 +82,33 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 <input type="submit" class="btn btn-success" name="Salvar" value="Salvar" id="">
+                            </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="excluir{{ $jogo->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Excluir</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form action="{{route('jogos-destroy', ['id' => $jogo->id])}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <div class="alert alert-danger">
+                                        <p>Deseja excluir {{ $jogo->nome }}?</p>
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+                                <input type="submit" class="btn btn-success" name="Salvar" value="Sim" id="">
                             </div>
                             </form>
 

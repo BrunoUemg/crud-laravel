@@ -50,4 +50,12 @@ class JogosController extends Controller
         Jogo::where('id',$id)->update($data);
         return redirect()->route('jogos-index')->with('msgOk', 'Atualizado com sucesso');
     }
+
+    public function destroy($id)
+    {
+
+        Jogo::where('id',$id)->delete();
+        return redirect()->route('jogos-index')->with('msgOk', 'Excluido com sucesso');
+
+    }
 }
